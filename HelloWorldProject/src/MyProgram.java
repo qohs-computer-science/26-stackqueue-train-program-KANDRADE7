@@ -1,8 +1,8 @@
 /*
- * TODO: Name
- * TODO: Date
- * TODO: Class Period
- * TODO: Program Description
+Katherine Andrade
+1/6/2026
+Period 6 CP3
+A train program that consists of a CarTrain and Track class. Uses queues to store and sort cars
  */
 import java.util.Scanner;
 import java.io.File;
@@ -27,5 +27,11 @@ public class MyProgram {
 		{
 			System.out.println(e.getMessage());
 		}
-	}
-}
+
+		CarTrain buggy = new CarTrain("CAR00001", "coal", "Pittsburgh", "Baltimore", 13000, 229);
+		System.out.println(buggy.toString());
+		System.out.println(buggy.needsInspection());
+	} //end main
+}// end MyProgram
+
+
