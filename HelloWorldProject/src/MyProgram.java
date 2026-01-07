@@ -31,6 +31,9 @@ public class MyProgram {
 		CarTrain buggy = new CarTrain("CAR00001", "coal", "Pittsburgh", "Baltimore", 13000, 229);
 		System.out.println(buggy.toString());
 		System.out.println(buggy.needsInspection());
+
+		Track trackA = new Track(0, limitTrackA, "Trenton");
+		System.out.println(trackA.toString());
 	} //end main
 }// end MyProgram
 
