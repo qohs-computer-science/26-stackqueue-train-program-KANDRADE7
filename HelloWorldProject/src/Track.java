@@ -22,24 +22,37 @@ public class Track {
     }//end getWeightLimit
 
     public String toString(){
+        String print = "";
+            print += myTrack.remove().getName() + "\n" + myTrack.remove().getProduct() +"\n" +
+            car.getOrigin()+"\n"+car.getDestination()+"\n"+car.getWeight()
+            +"\n"+car.getMiles();
+        }//end for each loop
+    }//end toString
 
-    }//end toS
-
-    /*
+    
     public boolean canAddCar(CarTrain car){
-        if(currentWeight < weightLimit)
-            return true;
+        if(currentWeight < weightLimit){
+            if(currentWeight + car.getMiles() <= weightLimit)
+                return true;
+            else
+                return false;              
+        }//end nested if 
+        else
+            return false;          
     } //end canAddCar
 
     public void addCar(CarTrain car){
-
-    }
+        myTrack.push(car);
+    }//end addCar
 
     public void setMilesAfterInspection(){
-        CarTrain.miles = 100;
-    }
+        for(CarTrain car: myTrack){
+            if(car.needsInspection())
+                car.setMiles(100);
+        }//end for each loop
+    }//end setMilesAfterInspection
     
     
-    */
+
     
 }// end Track class

@@ -9,7 +9,7 @@ public class CarTrain {
         origin = originCity;
         destination = end ;
         weight = ibs;
-        milesTravelled = miles;
+        miles = milesTravelled;
     }//end constructor
 
     public String getName(){
