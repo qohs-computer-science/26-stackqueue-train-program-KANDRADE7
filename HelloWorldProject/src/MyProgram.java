@@ -1,8 +1,8 @@
 /*
- * TODO: Name
- * TODO: Date
- * TODO: Class Period
- * TODO: Program Description
+Katherine Andrade
+1/6/2026
+Period 6 CP3
+A train program that consists of a CarTrain and Track class. Uses queues to store and sort cars
  */
 import java.util.Scanner;
 import java.io.File;
@@ -27,5 +27,29 @@ public class MyProgram {
 		{
 			System.out.println(e.getMessage());
 		}
-	}
-}
+
+		CarTrain buggy = new CarTrain("CAR00001", "coal", "Pittsburgh", "Baltimore", 13000, 229);
+		System.out.println(buggy.toString());
+		System.out.println(buggy.needsInspection());
+
+		//create tracks 
+		Track track0 = new Track(); //processing intially then sort
+		Track track1 = new Track(); // queue for overweight cars. loop through and use setMilesAfterInspection
+		Track trackA = new Track(0, limitTrackA, "Trenton");
+		System.out.println(trackA.toString());
+		Track trackB = new Track(0, limitTrackB, "Charlotte");
+		Track trackC = new Track(0, limitTrackC, "Baltimore");
+		Track trackD = new Track(0);
+
+		//process cars in
+		for (HelloWorldProject) {
+			if(name.indexOf("CAR") ==0){
+
+		}//end if
+		}//end for loop
+		
+
+	} //end main
+}// end MyProgram
+
+
