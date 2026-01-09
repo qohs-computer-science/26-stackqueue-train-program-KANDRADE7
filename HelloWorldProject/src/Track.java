@@ -6,6 +6,15 @@ public class Track {
     private String cityNameDestination;
     private Queue <CarTrain> myTrack;
 
+    public Track(){
+        myTrack = new LinkedList <CarTrain> ();
+    }//end constructor
+
+    public Track(int weight){
+        currentWeight = weight;
+        myTrack = new LinkedList <CarTrain> ();
+    }//end constructor
+
     public Track(int weight, int limit, String destination){
         currentWeight = weight;
         weightLimit = limit;
@@ -22,18 +31,16 @@ public class Track {
     }//end getWeightLimit
 
     public String toString(){
-        String print = "";
-            print += myTrack.remove().getName() + "\n" + myTrack.remove().getProduct() +"\n" +
-            car.getOrigin()+"\n"+car.getDestination()+"\n"+car.getWeight()
-            +"\n"+car.getMiles();
-        }//end for each loop
+        return "This is track is going to " + cityNameDestination + "." + " It has a weight limit of " + weightLimit + ". The current weight of cars on this track is " + currentWeight + ".";
     }//end toString
 
     
     public boolean canAddCar(CarTrain car){
         if(currentWeight < weightLimit){
-            if(currentWeight + car.getMiles() <= weightLimit)
+            if(currentWeight + car.getMiles() <= weightLimit){
+                currentWeight += car.getWeight();
                 return true;
+            }//end if 
             else
                 return false;              
         }//end nested if 
@@ -42,8 +49,12 @@ public class Track {
     } //end canAddCar
 
     public void addCar(CarTrain car){
-        myTrack.push(car);
+        myTrack.add(car);
     }//end addCar
+
+    public void removeCar(CarTrain car) {
+        myTrack.remove(car);
+    }//end removeCar
 
     public void setMilesAfterInspection(){
         for(CarTrain car: myTrack){
@@ -51,8 +62,5 @@ public class Track {
                 car.setMiles(100);
         }//end for each loop
     }//end setMilesAfterInspection
-    
-    
 
-    
 }// end Track class
