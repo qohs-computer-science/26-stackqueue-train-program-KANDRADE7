@@ -46,7 +46,8 @@ public class MyProgram {
 				else if(name.indexOf("ENG") ==0){
 					String engineId= name;
 					String city = x.nextLine();
-					System.out.println(engineId + " departure for " + city);
+					CarTrain engine = new CarTrain(engineId, city);
+					track0.addCar(engine);
 				}//end else if
 				name = x.nextLine();
 			}//end while loop
@@ -57,11 +58,12 @@ public class MyProgram {
 			System.out.println(e.getMessage());
 		}
 
-		CarTrain buggy = new CarTrain("CAR00001", "coal", "Pittsburgh", "Baltimore", 13000, 229);
-		System.out.println(buggy.toString());
-		System.out.println(buggy.needsInspection());
-
-		
+		//sorting 
+		while (!track0.isEmpty()){
+			CarTrain car = track0.removeNextCar();
+			System.out.print(car.toString());
+			System.out.println("\n**");
+		}//end for loop
 		
 		
 

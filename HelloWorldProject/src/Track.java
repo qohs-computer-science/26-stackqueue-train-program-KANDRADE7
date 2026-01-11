@@ -63,4 +63,12 @@ public class Track {
         }//end for each loop
     }//end setMilesAfterInspection
 
+    public boolean isEmpty(){
+        return myTrack.isEmpty();
+    }//end isEmpty
+
+    public CarTrain removeNextCar() {
+        return myTrack.remove();
+    }
+
 }// end Track class

@@ -12,6 +12,12 @@ public class CarTrain {
         miles = milesTravelled;
     }//end constructor
 
+    //this is for engines
+    public CarTrain(String id, String city){
+        name = id; 
+        destination = city;
+    }//end constructor 
+
     public String getName(){
         return name;
     }//end getId
@@ -48,7 +54,10 @@ public class CarTrain {
     }// end needsInspection
 
     public String toString(){
-        return "contents=" + product + "\noriginCity=" + origin +
+        if(product==null){
+            return name + " leaving for " + destination + " with the following cars: ";
+        }
+        return name + "\ncontents=" + product + "\noriginCity=" + origin +
         "\ndestination=" + destination + " \nweight=" + weight + "\nmiles=" + miles;
     }//end toString
 
