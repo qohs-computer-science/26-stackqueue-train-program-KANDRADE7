@@ -15,7 +15,8 @@ public class MyProgram {
 	public static void main(String[] args) {
 
 		int limitTrackA = 100000, limitTrackB = 100000, limitTrackC = 100000;
-		//creates tracks
+		
+		//create tracks
 		Track track0 = new Track(); //processing intially then sort
 		Track track1 = new Track(); // queue for overweight cars. loop through and use setMilesAfterInspection
 		Track trackA = new Track(0, limitTrackA, "Trenton");
@@ -58,16 +59,39 @@ public class MyProgram {
 			System.out.println(e.getMessage());
 		}
 
+		
 		//sorting 
 		while (!track0.isEmpty()){
 			CarTrain car = track0.removeNextCar();
-			System.out.print(car.toString());
-			System.out.println("\n**");
-		}//end for loop
-		
-		
+			String cityName = car.getDestination();
+            //check if engine 
+			if(car.getName().indexOf("ENG") ==0){
+				String engine = car.getName();
+				if(cityName.equals("Trenton"))
+					depart(trackA, engine, cityName);
+				else if(cityName.equals("Charlotte"))
+					depart(trackB, engine, cityName);
+				else if(cityName.equals("Baltimore"))
+					depart(trackC, engine, cityName);
+				else 
+					depart(trackD, engine, cityName);
+				}//end if
 
-	} //end main
+			//regular cars 
+			if(car.needsInspection())
+				track1.addCar(car);
+			
+		}//end while loop
+	}//end main
+
+	public static void depart(Track track, String engineId, String city){
+		System.out.println(engineId + " leaving for " + city + " with the following cars:");
+		while(!track.isEmpty()){
+			CarTrain c = track.removeNextCar();
+			System.out.println(c.getName() + " containing " + c.getProduct());
+		}
+	}//end depart funct
+
 }// end MyProgram
 
 

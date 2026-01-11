@@ -6,6 +6,7 @@ public class Track {
     private String cityNameDestination;
     private Queue <CarTrain> myTrack;
 
+    //for tracks with no weight limit 
     public Track(){
         myTrack = new LinkedList <CarTrain> ();
     }//end constructor
@@ -30,26 +31,29 @@ public class Track {
         return weightLimit;
     }//end getWeightLimit
 
+    public String getCityNameDestination(){
+        return cityNameDestination;
+    }
+    
+    public boolean isEmpty(){
+        return myTrack.isEmpty();
+    }//end isEmpty 
+    
     public String toString(){
         return "This is track is going to " + cityNameDestination + "." + " It has a weight limit of " + weightLimit + ". The current weight of cars on this track is " + currentWeight + ".";
     }//end toString
 
     
     public boolean canAddCar(CarTrain car){
-        if(currentWeight < weightLimit){
-            if(currentWeight + car.getMiles() <= weightLimit){
-                currentWeight += car.getWeight();
-                return true;
-            }//end if 
-            else
-                return false;              
-        }//end nested if 
-        else
-            return false;          
+        if(currentWeight == 0){
+            return true;
+        }
+        return currentWeight + car.getWeight() <= weightLimit;
     } //end canAddCar
 
     public void addCar(CarTrain car){
         myTrack.add(car);
+        currentWeight += car.getWeight();
     }//end addCar
 
     public void removeCar(CarTrain car) {
@@ -63,9 +67,6 @@ public class Track {
         }//end for each loop
     }//end setMilesAfterInspection
 
-    public boolean isEmpty(){
-        return myTrack.isEmpty();
-    }//end isEmpty
 
     public CarTrain removeNextCar() {
         return myTrack.remove();

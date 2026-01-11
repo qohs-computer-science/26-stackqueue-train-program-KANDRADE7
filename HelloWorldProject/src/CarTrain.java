@@ -12,7 +12,7 @@ public class CarTrain {
         miles = milesTravelled;
     }//end constructor
 
-    //this is for engines
+    //engine constructor 
     public CarTrain(String id, String city){
         name = id; 
         destination = city;
@@ -47,10 +47,7 @@ public class CarTrain {
     }//end setMiles
 
     public boolean needsInspection(){
-        if(miles > 700)
-            return true;
-        else 
-            return false;
+        return miles > 700; 
     }// end needsInspection
 
     public String toString(){
