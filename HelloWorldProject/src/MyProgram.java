@@ -20,7 +20,6 @@ public class MyProgram {
 		Track track0 = new Track(); //processing intially then sort
 		Track track1 = new Track(); // queue for overweight cars. loop through and use setMilesAfterInspection
 		Track trackA = new Track(0, limitTrackA, "Trenton");
-		System.out.println(trackA.toString());
 		Track trackB = new Track(0, limitTrackB, "Charlotte");
 		Track trackC = new Track(0, limitTrackC, "Baltimore");
 		Track trackD = new Track(0);
@@ -30,7 +29,7 @@ public class MyProgram {
 			File f = new File("HelloWorldProject/src/data.txt");
 			x = new Scanner (f);
 			String name = x.nextLine();
-			System.out.println(name);
+
 			
 			//process cars from text to track0
 			while(!name.equals("END")) {
@@ -88,8 +87,10 @@ public class MyProgram {
 		System.out.println(engineId + " leaving for " + city + " with the following cars:");
 		while(!track.isEmpty()){
 			CarTrain c = track.removeNextCar();
-			System.out.println(c.getName() + " containing " + c.getProduct());
+			if(c.getName().indexOf("CAR") ==0)
+				System.out.println(c.getName() + " containing " + c.getProduct());
 		}//end while loop
+		System.out.println();
 	}//end depart funct
 
 	public static void addWithCaution(CarTrain car, Track track, String city){
@@ -99,19 +100,18 @@ public class MyProgram {
 		track.addCar(car);
 	}//end addWithCaution
 
-	public static void organizeCars(CarTrain car, Track trackA, Track trainB, Track trainC, Track trainD){
+	public static void organizeCars(CarTrain car, Track trackA, Track trackB, Track trackC, Track trackD){
 		String destination = car.getDestination();
 
 		if(destination.equals("Trenton"))
-			addWithLimit(car, trackA, "Trenton");
+			addWithCaution(car, trackA, "Trenton");
 		else if(destination.equals("Charlotte"))
-			addWithLimit(car, trackB, "Charlotte");
+			addWithCaution(car, trackB, "Charlotte");
 		else if(destination.equals("Baltimore"))
-			addWithLimit(car, trackC, "Baltimore");
+			addWithCaution(car, trackC, "Baltimore");
 		else 
-			trainD.addCar(car);
-	}
+			trackD.addCar(car);
+	}//end organizeCars
+
 
 }// end MyProgram
-
-
