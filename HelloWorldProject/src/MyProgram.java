@@ -58,7 +58,6 @@ public class MyProgram {
 		{
 			System.out.println(e.getMessage());
 		}
-
 		
 		//sorting 
 		while (!track0.isEmpty()){
@@ -80,7 +79,8 @@ public class MyProgram {
 			//regular cars 
 			if(car.needsInspection())
 				track1.addCar(car);
-			
+			else
+				organizeCars(car, trackA, trackB, trackC, trackD);
 		}//end while loop
 	}//end main
 
@@ -89,8 +89,28 @@ public class MyProgram {
 		while(!track.isEmpty()){
 			CarTrain c = track.removeNextCar();
 			System.out.println(c.getName() + " containing " + c.getProduct());
-		}
+		}//end while loop
 	}//end depart funct
+
+	public static void addWithCaution(CarTrain car, Track track, String city){
+		if(!track.canAddCar(car)){
+			depart(track, "ENG00000", city);
+		}
+		track.addCar(car);
+	}//end addWithCaution
+
+	public static void organizeCars(CarTrain car, Track trackA, Track trainB, Track trainC, Track trainD){
+		String destination = car.getDestination();
+
+		if(destination.equals("Trenton"))
+			addWithLimit(car, trackA, "Trenton");
+		else if(destination.equals("Charlotte"))
+			addWithLimit(car, trackB, "Charlotte");
+		else if(destination.equals("Baltimore"))
+			addWithLimit(car, trackC, "Baltimore");
+		else 
+			trainD.addCar(car);
+	}
 
 }// end MyProgram
 
