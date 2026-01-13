@@ -64,6 +64,10 @@ public class MyProgram {
 			if(car.needsInspection())
 				track1.addCar(car);
             //check if engine 
+			if(car.getName().indexOf("ENG") ==0){
+				String engine = car.getName();
+			///move engine to correct track
+			}//end if
 			if(cityName.equals("Trenton"))
 				trackA.addCar(car);
 			else if(cityName.equals("Charlotte"))
@@ -73,9 +77,21 @@ public class MyProgram {
 			else 
 				trackD.addCar(car);	
 		}//end while loop
-		
-	}//end main
 
+
+	}//end main
+	public static void organizeCars(CarTrain car, Track trackA, Track trackB, Track trackC, Track trackD){
+		String cityName = car.getDestination();
+		if(cityName.equals("Trenton"))
+			trackA.addCar(car);
+		else if(cityName.equals("Charlotte"))
+			trackB.addCar(car);	
+		else if(cityName.equals("Baltimore"))
+		trackC.addCar(car);			
+		else 
+			trackD.addCar(car);	
+	}//end organizeCars
+	
 	public static void depart(Track track, String engineId, String city){
 		System.out.println(engineId + " leaving for " + city + " with the following cars:");
 		while(!track.isEmpty()){
@@ -86,25 +102,11 @@ public class MyProgram {
 		System.out.println();
 	}//end depart funct
 
-	public static void addWithCaution(CarTrain car, Track track, String city){
+	public static void addCarWithLimit(CarTrain car, Track track, String city){
 		if(!track.canAddCar(car)){
 			depart(track, "ENG00000", city);
 		}
 		track.addCar(car);
 	}//end addWithCaution
-
-	public static void organizeCars(CarTrain car, Track trackA, Track trackB, Track trackC, Track trackD){
-		String destination = car.getDestination();
-
-		if(destination.equals("Trenton"))
-			addWithCaution(car, trackA, "Trenton");
-		else if(destination.equals("Charlotte"))
-			addWithCaution(car, trackB, "Charlotte");
-		else if(destination.equals("Baltimore"))
-			addWithCaution(car, trackC, "Baltimore");
-		else 
-			trackD.addCar(car);
-	}//end organizeCars
-
 
 }// end MyProgram
