@@ -30,7 +30,6 @@ public class MyProgram {
 			x = new Scanner (f);
 			String name = x.nextLine();
 
-			
 			//process cars from text to track0
 			while(!name.equals("END")) {
 				if(name.indexOf("CAR") ==0){
@@ -62,25 +61,19 @@ public class MyProgram {
 		while (!track0.isEmpty()){
 			CarTrain car = track0.removeNextCar();
 			String cityName = car.getDestination();
-            //check if engine 
-			if(car.getName().indexOf("ENG") ==0){
-				String engine = car.getName();
-				if(cityName.equals("Trenton"))
-					depart(trackA, engine, cityName);
-				else if(cityName.equals("Charlotte"))
-					depart(trackB, engine, cityName);
-				else if(cityName.equals("Baltimore"))
-					depart(trackC, engine, cityName);
-				else 
-					depart(trackD, engine, cityName);
-				}//end if
-
-			//regular cars 
 			if(car.needsInspection())
 				track1.addCar(car);
-			else
-				organizeCars(car, trackA, trackB, trackC, trackD);
+            //check if engine 
+			if(cityName.equals("Trenton"))
+				trackA.addCar(car);
+			else if(cityName.equals("Charlotte"))
+				trackB.addCar(car);	
+			else if(cityName.equals("Baltimore"))
+				trackC.addCar(car);			
+			else 
+				trackD.addCar(car);	
 		}//end while loop
+		
 	}//end main
 
 	public static void depart(Track track, String engineId, String city){

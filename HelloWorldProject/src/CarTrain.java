@@ -24,8 +24,8 @@ public class CarTrain {
 
     public String getProduct(){
         return product;
-    }//end getProduct
-
+    }//end getProduct 
+ 
     public String getOrigin(){
         return origin;
     }//end getOrigin
