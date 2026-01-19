@@ -102,18 +102,20 @@ public class MyProgram {
 			else
 				trackD.addCar(car);
 		}//end while loop
-		
-		//depart trackD
-		//add code
 
 		//depart remaining tracks
 		depart(trackA, "ENG00000", "Trenton");
 		depart(trackB, "ENG00000", "Charlotte");
 		depart(trackC, "ENG00000", "Charlotte");
 
-		
+		//depart trackD other destinations
+		while(!trackD.isEmpty()){
+			CarTrain c = trackD.removeNextCar();
+			System.out.println(c.getName() + " heading to " + c.getDestination());
+		}// end while loop
 	}//end main
 	
+	//my helper methods
 	public static void depart(Track track, String engineId, String city){
 		System.out.println(engineId + " leaving for " + city + " with the following cars:");
 		while(!track.isEmpty()){
@@ -130,5 +132,4 @@ public class MyProgram {
 		}
 		track.addCar(car);
 	}//end addWithCaution
-
 }// end MyProgram

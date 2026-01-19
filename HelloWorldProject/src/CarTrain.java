@@ -57,5 +57,4 @@ public class CarTrain {
         return name + "\ncontents=" + product + "\noriginCity=" + origin +
         "\ndestination=" + destination + " \nweight=" + weight + "\nmiles=" + miles;
     }//end toString
-
 }// end CarTrain class
