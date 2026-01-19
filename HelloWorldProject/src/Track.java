@@ -56,8 +56,11 @@ public class Track {
         currentWeight += car.getWeight();
     }//end addCar
 
-    public void removeCar(CarTrain car) {
-        myTrack.remove(car);
+    public void resetTrack(CarTrain car) {
+        while (!myTrack.isEmpty()) {
+            myTrack.remove(car);
+        }
+        currentWeight=0;
     }//end removeCar
 
     public void setMilesAfterInspection(){
@@ -70,6 +73,7 @@ public class Track {
 
     public CarTrain removeNextCar() {
         return myTrack.remove();
+        currentWeight -= car.getWeight();
     }
 
 }// end Track class

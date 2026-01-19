@@ -39,14 +39,11 @@ public class MyProgram {
 					String destination = x.nextLine();
 					int weight = (int) x.nextInt();
 					int miles = (int) x.nextInt(); 
-					CarTrain car = new CarTrain(id, contents, origin, destination, weight, miles);
-					track0.addCar(car);
+					track0.addCar(new CarTrain(id, contents, origin, destination, weight, miles));
 				}//end if
 				else if(name.indexOf("ENG") ==0){
-					String engineId= name;
 					String city = x.nextLine();
-					CarTrain engine = new CarTrain(engineId, city);
-					track0.addCar(engine);
+					track0.addCar(new CarTrain(name, city));
 				}//end else if
 				name = x.nextLine();
 			}//end while loop
@@ -61,36 +58,61 @@ public class MyProgram {
 		while (!track0.isEmpty()){
 			CarTrain car = track0.removeNextCar();
 			String cityName = car.getDestination();
-			if(car.needsInspection())
-				track1.addCar(car);
-            //check if engine 
+
+			//if engine signal, depart immediately 
 			if(car.getName().indexOf("ENG") ==0){
-				String engine = car.getName();
-			///move engine to correct track
+				String engineId = car.getName();
+				if(cityName.equals("Trenton"))
+					depart(trackA, engineId, "Trenton");
+				else if(cityName.equals("Charlotte"))
+					depart(trackB, engineId, "Charlotte");
+				else if(cityName.equals("Baltimore"))
+					depart(trackC, engineId, "Baltimore");
 			}//end if
-			if(cityName.equals("Trenton"))
-				trackA.addCar(car);
-			else if(cityName.equals("Charlotte"))
-				trackB.addCar(car);	
-			else if(cityName.equals("Baltimore"))
-				trackC.addCar(car);			
-			else 
-				trackD.addCar(car);	
+			//if needs inspection, send to track 1
+			else if(car.needsInspection()){
+				track1.addCar(car);
+			}
+			
+			//adding cars to respective tracks 
+			else{
+				if(cityName.equals("Trenton"))
+					addCarWithLimit(car, trackA, "Trenton");
+				else if(cityName.equals("Charlotte"))
+					addCarWithLimit(car, trackB, "Charlotte");	
+				else if(cityName.equals("Baltimore"))
+					addCarWithLimit(car, trackC, "Baltimore");			
+				else 
+					trackD.addCar(car);	
+			}//end else	
 		}//end while loop
 
+		//inspect cars
+		track1.setMilesAfterInspection();
+		while(!track1.isEmpty()){
+			CarTrain car = track1.removeNextCar();
+			String dest = car.getDestination();
 
+			if(dest.equals("Trenton"))
+				addCarWithLimit(car, trackA, dest);
+			else if(dest.equals("Charlotte"))
+				addCarWithLimit(car, trackB, dest);
+			else if(dest.equals("Baltimore"))
+				addCarWithLimit(car, trackC, dest);
+			else
+				trackD.addCar(car);
+		}//end while loop
+		
+		//depart trackD
+		//add code
+
+		//depart remaining tracks
+		depart(trackA, "ENG00000", "Trenton");
+		depart(trackB, "ENG00000", "Charlotte");
+		depart(trackC, "ENG00000", "Charlotte");
+
+		
 	}//end main
-	public static void organizeCars(CarTrain car, Track trackA, Track trackB, Track trackC, Track trackD){
-		String cityName = car.getDestination();
-		if(cityName.equals("Trenton"))
-			trackA.addCar(car);
-		else if(cityName.equals("Charlotte"))
-			trackB.addCar(car);	
-		else if(cityName.equals("Baltimore"))
-		trackC.addCar(car);			
-		else 
-			trackD.addCar(car);	
-	}//end organizeCars
 	
 	public static void depart(Track track, String engineId, String city){
 		System.out.println(engineId + " leaving for " + city + " with the following cars:");
